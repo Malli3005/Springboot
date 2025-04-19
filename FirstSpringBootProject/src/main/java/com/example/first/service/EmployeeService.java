@@ -26,10 +26,10 @@ public class EmployeeService {
     }
 	public Optional<Employee> updateEmployee(Long id, Employee updatedEmployee) {
         return employeeRepository.findById(id).map(existingEmployee -> {
-            existingEmployee.setfName(updatedEmployee.getfName());
-            existingEmployee.setlName(updatedEmployee.getlName());
+            existingEmployee.setFirst_name(updatedEmployee.getFirst_name());
+            existingEmployee.setLast_name(updatedEmployee.getLast_name());
             existingEmployee.setEmail(updatedEmployee.getEmail());
-            existingEmployee.setPhoneNumber(updatedEmployee.getPhoneNumber());
+            existingEmployee.setPhone_number(updatedEmployee.getPhone_number());
             existingEmployee.setDepartments(updatedEmployee.getDepartments());
             existingEmployee.setDesignation(updatedEmployee.getDesignation());
             return employeeRepository.save(existingEmployee);

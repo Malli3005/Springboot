@@ -3,6 +3,8 @@ package com.example.first.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,17 +26,26 @@ import jakarta.websocket.server.PathParam;
 @RequestMapping("/api/employee")
 public class EmployeeController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+	
 	@Autowired
 	EmployeeService employeeService;
 	
 	
 	@PostMapping
 	public Employee createEmployee(@RequestBody Employee employee) {
-		return employeeService.saveEmployee(employee);
+		logger.info("Creating the employee");
+		
+			Employee employee1=	employeeService.saveEmployee(employee);
+			logger.debug("Successfully Created the employee");
+			return employee1;
 	}
 	@GetMapping
 	public List<Employee> getEmployees(){
-		return employeeService.getAllEMployees();
+		logger.info("Fetching the employee details");
+		List<Employee> employees=employeeService.getAllEMployees();
+		logger.debug("Employees Successfully fetched");
+		return  employees;
 	}
 	
 	@GetMapping("/{id}")
